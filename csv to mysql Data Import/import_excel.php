@@ -68,12 +68,12 @@
 }
 }
  if(isset($_POST["Export"])){
-     
+     $con = getdb();
       header('Content-Type: text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=data.csv');  
       $output = fopen("php://output", "w");  
-      fputcsv($output, array('Nick', 'First', 'Last', 'email', 'Age', 'current_city', 'Password', 'Mobile'));  
-      $query = "SELECT * from user ORDER BY id DESC";  
+      fputcsv($output, array('id','Nick', 'First', 'Last', 'email', 'Age', 'current_city', 'Mobile', 'Password'));  
+      $query = "SELECT * from user ORDER BY id ASC";  
       $result = mysqli_query($con, $query);  
       while($row = mysqli_fetch_assoc($result))  
       {  
